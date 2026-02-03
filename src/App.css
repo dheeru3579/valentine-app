@@ -1,38 +1,174 @@
-.App {
+* { box-sizing: border-box; }
+
+.page{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 20px;
+  position: relative;
+  overflow:hidden;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(255,120,170,0.35), transparent 60%),
+              radial-gradient(900px 500px at 80% 30%, rgba(160,120,255,0.28), transparent 60%),
+              radial-gradient(700px 500px at 50% 85%, rgba(255,70,130,0.22), transparent 60%),
+              #0b0b12;
+  color: #fff;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.bg-glow{
+  position:absolute;
+  inset:-40px;
+  background: linear-gradient(120deg, rgba(255,80,150,0.12), rgba(140,110,255,0.10), rgba(255,200,220,0.08));
+  filter: blur(18px);
+  pointer-events:none;
+}
+
+.card{
+  width: min(560px, 95vw);
+  border-radius: 22px;
+  padding: 28px 22px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.title{
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4.8vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.subtitle{
+  margin: 0 0 18px;
+  opacity: 0.92;
+  font-size: 16px;
+}
+
+.name{
+  font-weight: 700;
+  color: rgba(255,190,215,0.95);
+  text-shadow: 0 0 18px rgba(255, 100, 160, 0.35);
+}
+
+.buttons{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  position: relative;
+  min-height: 58px;
+}
+
+.btn{
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.btn.yes{
+  background: linear-gradient(135deg, rgba(255,70,140,1), rgba(255,160,210,1));
+  color: #1a0010;
+  box-shadow: 0 18px 45px rgba(255, 80, 150, 0.25);
+}
+
+.btn.no{
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.hint{
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.yesWrap{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 20px 60px rgba(255, 80, 150, 0.18);
+  margin-bottom: 10px;
+  font-size: 34px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.loveText{
+  margin: 12px auto 0;
+  font-size: 16px;
+  line-height: 1.55;
+  opacity: 0.92;
+  max-width: 48ch;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.glowRow{
+  margin-top: 18px;
+  display:flex;
+  justify-content:center;
+  gap: 14px;
+  font-size: 28px;
 }
 
-.App-link {
-  color: #61dafb;
+.glow{
+  animation: glowPulse 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px rgba(255, 80, 150, 0.95));
+}
+.glow:nth-child(2){ animation-delay: .12s; }
+.glow:nth-child(3){ animation-delay: .24s; }
+.glow:nth-child(4){ animation-delay: .36s; }
+.glow:nth-child(5){ animation-delay: .48s; }
+
+@keyframes glowPulse{
+  0%,100%{ transform: translateY(0) scale(1); opacity: 0.95; }
+  50%{ transform: translateY(-3px) scale(1.08); opacity: 1; }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Falling hearts/emojis */
+.heart-rain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index: 1;
+}
+
+.heart{
+  position:absolute;
+  top: -40px;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  will-change: transform, opacity;
+  opacity: 0.98;
+}
+
+@keyframes fall{
+  0% { transform: translateY(-20px); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0.9; }
+}
+
+.footer{
+  position:absolute;
+  bottom: 14px;
+  font-size: 12px;
+  opacity: 0.6;
+  z-index: 2;
 }
