@@ -343,7 +343,7 @@ export default function App() {
                 animate={{ scale: [0.95, 1.03, 1] }}
                 transition={{ duration: 0.55 }}
               >
-                Will you be my Valentine? 💘
+                Jahnavi, will you be my Valentine? 💘
               </motion.h1>
 
               <p className="subtitle">
